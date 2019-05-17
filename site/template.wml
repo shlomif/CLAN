@@ -76,13 +76,13 @@ $(ROOT)/<get-var url />
 <li><navbarlink "docs/" "Documents" /></li>
 <li><navbarlink "download/" "Downloads" /></li>
 </ul>
-<ul>
+<ul class="navbarmain">
 <li><navbarlink "conventions.html" "Coding Conventions" /></li>
 </ul>
-<ul>
+<ul class="navbarmain">
 <li><navbarlink "contributors.html" "Contributors" /></li>
 </ul>
-<ul>
+<ul class="navbarmain">
 <li><navbarlink "links.html" "Links" /></li>
 </ul>
 
