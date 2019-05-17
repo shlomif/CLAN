@@ -1,7 +1,5 @@
-# #use wml::des::navbar
-
 # The Definition of the page itself
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html
      PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -79,11 +77,14 @@ $(ROOT)/<get-var url />
 <li><navbarlink "future.html" "Future Vision" /></li>
 <li><navbarlink "docs/" "Documents" /></li>
 <li><navbarlink "download/" "Downloads" /></li>
-<li>&nbsp;</li>
+</ul>
+<ul>
 <li><navbarlink "conventions.html" "Coding Conventions" /></li>
-<li>&nbsp;</li>
+</ul>
+<ul>
 <li><navbarlink "contributors.html" "Contributors" /></li>
-<li>&nbsp;</li>
+</ul>
+<ul>
 <li><navbarlink "links.html" "Links" /></li>
 </ul>
 
@@ -144,4 +145,3 @@ $(ROOT)/<get-var url />
 
 #   per default we are in body
 {#BODY#:
-
