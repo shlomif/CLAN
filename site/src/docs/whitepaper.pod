@@ -190,7 +190,7 @@ there.
 =head1 Availability
 
 The Perl POD source for this document is available on
-L<http://fc-solve.berlios.de/clan/>. (note that it is a temporary location
+L<https://fc-solve.shlomifish.org/CLAN/>. (note that it is a temporary location
 and you should probably STFW or RTFM for it).
 
 =head1 Thanks

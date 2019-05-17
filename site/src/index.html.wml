@@ -6,7 +6,7 @@
 
 <p>
 The <b>Comprehensive Linux Archive Network</b> (or <b>CLAN</b> for short)
-aims to be for the Linux kernel what <a href="http://www.perl.com/">CPAN</a>
+aims to be for the Linux kernel what <a href="https://en.wikipedia.org/wiki/CPAN">CPAN</a>
 is for <a href="http://www.perl.com/">Perl</a> and the Debian Pool and Apt
 is for Debian. I.e: a framework for downloading, compiling, installing and
 upgrading kernel modules and entire kernels.

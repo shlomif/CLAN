@@ -146,7 +146,7 @@ I think a nice thing to have would be a tree of architecutres:
 etc.
 
 Every package can specify a list of nodes that it can be built with. For
-example, Syscalltrack (L<http://www.syscalltrack.org/>) is a source package,
+example, Syscalltrack (L<http://syscalltrack.sourceforge.net/>) is a source package,
 yet was only adapted to the i386 and subsequent architectures. There are many
 binary only kernel drivers out there. A source package may specify [ROOT]
 to show that it is universal and built anywhere.
