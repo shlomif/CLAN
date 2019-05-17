@@ -67,9 +67,7 @@ $(ROOT)/<get-var url />
 <tr>
 <td valign="top" class="navbar" style="width:20%">
 
-<div align="center">
-<img src="$(ROOT)/clan_small.png" border="0" alt="CLAN" />
-</div>
+<img src="$(ROOT)/clan_small.png" style="border-width:0;" alt="CLAN" />
 
 <ul class="navbarmain">
 <li><navbarlink "" "Home" /></li>
