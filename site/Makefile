@@ -54,23 +54,5 @@ $(PACKAGES_DESTS) :: $(PACKAGES_DIR)/% : ./temp/lk-module-compiler-final/%
 
 UPLOAD_URL := hostgator:domains/fc-solve/public_html/CLAN/
 
-upload: all arc
+upload: all
 	( cd dest && $(RSYNC) -r * $(UPLOAD_URL) )
-
-ARC_NAME = CLAN-$(shell date +%Y-%m-%d).tar.gz
-
-arc: $(ARC_NAME)
-
-del_arc:
-	rm -f $(ARC_NAME)
-
-rearc: del_arc arc
-
-$(ARC_NAME):
-	(cd temp && ./make-archive.sh)
-
-upload_arc: arc
-	$(RSYNC) $(ARC_NAME) shlomif@shell.berlios.de:
-
-
-
