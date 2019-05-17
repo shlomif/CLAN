@@ -124,6 +124,9 @@ $(ROOT)/<get-var url />
 <p>
 <b>Webmaster:</b> <a href="https://www.shlomifish.org/">Shlomi Fish</a>. <a href="mailto:shlomif@cpan.org">Email</a>
 </p>
+<p>
+<a href="https://github.com/shlomif/CLAN"><b>Sources</b></a>.
+</p>
 
 </body>
 </html>
