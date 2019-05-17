@@ -1,0 +1,31 @@
+#include '../template.wml'
+
+<subject "CLAN - Code" />
+
+<h2>The "Comprehensive Linux Archive Network" Codebase</h2>
+
+<p>
+The <b>Comprehensive Linux Archive Network</b> (or <b>CLAN</b> for short)
+aims to be for the Linux kernel what <a href="http://www.perl.com/">CPAN</a>
+is for <a href="http://www.perl.com/">Perl</a> and the Debian Pool and Apt
+is for Debian. I.e: a framework for downloading, compiling, installing and
+upgrading kernel modules and entire kernels.
+</p>
+
+<p>
+CLAN is at the moment mostly ideaware and planningware that is documented by
+some whitepapers and specifications. (I don't mind it being called vapourware).
+The <a href="./lkmb/">Linux::Kernel::Module::Builder</a> Perl Module is
+functional but there is still a lot that needs to be done for it was well.
+</p>
+
+<p>
+The <a href="$(ROOT)/docs/whitepaper.html">whitepaper</a> describes some
+of the issues that brought the idea to life. CLAN will be usable right from
+the start, and will accomulate more and more functionality as times goes by.
+It will be based on the models provided by CPAN, the Debian Pool, Gentoo and
+similar efforts, while trying to improve upon them when possible, and
+translating them to the kernel specific needs.
+</p>
+
+

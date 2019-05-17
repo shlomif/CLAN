@@ -1,0 +1,72 @@
+=head1 CLAN Roadmap
+
+=head1 Version
+
+0.1.0
+
+=head1 Author
+
+Shlomi Fish ( L<https://www.shlomifish.org/> )
+
+=head1 Introduction
+
+This document is a roadmap for the development of the CLAN framework and
+illustrates how it can be achieved step by step. (good knowledge of the
+whitepaper and spec is assumed).
+
+I hope and believe that we will not require to through away all the code
+at a certain point. However, even if we do, I don't think the code we write
+will be large scope enough to waste sentiments on not re-writing it.
+
+=head1 Roadmap of the Code
+
+=head2 Version 0.2.0
+
+A C<Linux::ModuleMaker> Perl module that can build a Perl module from a simple
+bootstrap with only the bare essentials.
+
+Can compile an autoconfisicated source package, as well as an SRPM, debian
+source package, etc.
+
+Also possible would be to build and install the module in one step.
+
+=head2 Version 0.4.0
+
+Dependencies, and installing more modules from a local tree.
+
+=head2 Version 0.6.0
+
+Sources and installing modules from remote.
+
+=head2 Version 0.8.0
+
+Installing and configuring the "kernel" package.
+
+=head2 Version 0.10.0
+
+Installing and configuring an "all-in-one" packages that contain a kernel
+and/or several modules
+
+=head2 Version 0.12.0
+
+Upgrading kernels, integration with LILO, GRUB and loadlin, multiple kernel
+configurations.
+
+=head2 Version 0.14.0
+
+Inheritable kernel configurations.
+
+=head1 Notes
+
+This does not include putting all the packages online, or setting up a
+system for maintaining them.
+
+=head1 Thanks
+
+None yet.
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+#include '../template.wml'
+
+<subject "Contributors and Acknowledgements" />
+
+<ol>
+<li>
+<a href="http://www.surriel.com/">Rik van Riel</a> for telling me CLAN might
+be a good idea, and encouraging me to write the whitepaper which was its
+humble beginning (of a still humble progress.
+</li>
+<li>
+<a href="http://www.stallman.org/">Richard M. Stallman</a> - for also thinking
+CLAN may prove good for maintaining the Linux kernel.
+</li>
+<li>
+The great guys at <a href="http://www.kernelnewbies.org/">irc.kernelnewbies.org</a> for their comments and help. (if you remember you did and can tell me your
+nick and homepage, please do)
+</li>
+<li>
+The <a href="http://www.oprofile.org/">OProfile</a> Hackers for creating a
+usable prototype for compiling kernel modules outside the kernel, which I
+shamelessly ripped into my code.
+</li>
+<li>
+Various <a href="http://www.tux.org/lkml/">Linux Kernel Mailing List</a>
+Contributors for their Input
+</li>
+<li>
+Linus Torvalds for creating the Linux kernel and managing it so far. Richard
+Stallman for starting the GNU project which enabled it. Ken Thompson
+and Dennis Ritchie for inventing and working on AT&amp;T UNIX. Aristotle
+for his Organum, which laid the basis for modern Logic...
+</li>
+<li>
+<b>Your place here.</b>. Contribute something (even just a suggestion) and you'll be acknowledged.
+</li>
+</ol>
+
+<p>
+So many thanks and I hardly even started. But a nice thank you or compliment
+goes a long way to make someone's day happier. ;-)
+</p>
+

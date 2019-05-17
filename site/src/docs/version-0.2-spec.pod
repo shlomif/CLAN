@@ -1,0 +1,111 @@
+=head1 CLAN - Version 0.2.x Specification
+
+=head1 Version
+
+0.1.0
+
+=head1 Author
+
+Shlomi Fish ( L<https://www.shlomifish.org/> )
+
+=head1 Introduction
+
+This document provides a specification for the functionality provided by version
+0.2 of the Linus Module Builder - an automatic framework written in Perl 5
+that builds a Linux kernel module and packages it for easy installation.
+
+It aims to be the humble beginning of CLAN - The Comprehensive Linux Archive
+Network
+
+=head1 Contents of a CLAN package
+
+=head2 ver.txt
+
+This files contains the version of the module. It is present there for easy
+retrieval by any scripts that may want it (i.e: C<`cat ver.txt`>)
+
+=head2 make_pack.pl
+
+This file is equivalent to Makefile.PL on CPAN packages but much more powerful.
+Essentially all it includes is a perl C<use> statement for a common module
+and calling its glboal function. It is exactly the same on all CLAN packages.
+
+It is meant to build a package by hand, or by scripts. It is executable.
+
+=head2 BuildLinuxPackage.pm
+
+This file (whose name may eventually be shortened) includes functions and
+directives that control the building of the module. Stuff that are specified:
+
+=head3 Regular C objects
+
+Regular C objects of the module
+
+=head3 Pre-processed C objects
+
+C objects that are preprocessed to include version information and other macros
+like that.
+
+=head3 Generic targets
+
+Targets that should be built by make as generic commands.
+
+=head3 The Category of the module
+
+The category of the module
+
+=head3 Dependenant packages
+
+Currently not used but will be useful in more recent versions to resolve
+dependencies possible in more recent versions.
+
+=head3 Special gcc flags
+
+This contains special gcc flags that should be applied to the module to
+be compiled correctly. It is an ad-hoc solution until I figure out a way
+to fully build and process gcc command-lines (there might be a CPAN module
+for that...)
+
+=head3 A list of architectures
+
+A list of architectures that this module can be built on. C<[ROOT]> indicates
+that it can be built everywhere (at least theoretically).
+
+=head2 src/
+
+This is a directory that contains the actual source files. I don't want to
+put them all directly in the CLAN package. It may contain a tree of files.
+
+=head2 MANIFEST
+
+A file that contains a list of all the files in the package. Or maybe
+we should think of a better way to pack everything.
+
+=head1 Usage
+
+C<make_pack.pl> accepts several flags:
+
+=head2 --arch
+
+The architecture to which to build the binary assuming it is relevant. Accepts
+a standard kernel architecture (i386, sparc, sparc64, alpha, arm, uml-i386) etc.
+
+=head2 --package={tar.gz,srpm,rpm,tar.bz2}
+
+What self-contained package to prepare.
+
+=head2 --prepare
+
+Prepare a self contained package
+
+=head2 --compile
+
+Prepare and compile
+
+=head2 --install
+
+Prepare compile, and install (may not be implemented yet)
+
+
+
+

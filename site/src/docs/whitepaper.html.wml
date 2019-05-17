@@ -1,0 +1,5 @@
+#use wml::fmt::pod
+
+#include '../template.wml'
+
+<: print wml_fmt_pod ({ FILE => "./docs/whitepaper.pod" }); :>

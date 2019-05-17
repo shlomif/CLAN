@@ -1,0 +1,213 @@
+=head1 CLAN - Specification
+
+=head1 Version
+
+0.2.2
+
+=head1 Author
+
+Shlomi Fish ( L<https://www.shlomifish.org/> )
+
+=head1 Introduction
+
+This document aims to create a detailed specification of the configuration
+files and processes involved in the Comprehensive Linux Archive Network (
+or CLAN for short).
+
+It does not include too much code - only perhaps pseudocode and algorithms.
+
+=head1 Global Configuration Files
+
+=head2 The "sources" File
+
+C<sources> is a configuration file that specifies the directories in which
+to look for packages. It is generally a flat list with one source (as a URL)
+per line. It is possible to have C<#include> directives to include a differnet
+source and maybe some other directives as we see fit.
+
+When looking for packages each one of the source would be searched for the
+suitable module.
+
+=head2 The Options File
+
+These tell how the user wishes to build the kernel. It may be split into several
+sections to accomodate for several kernels. A user may wish to work with
+several User-Mode-Linux kernels.
+
+=head1 Multiple Kernels
+
+One cannot assume a system will have more than one kernel. Even a mundane
+user may have several instances of User-Mode-Linux. A typical Linux
+installation has several kernels each with its own configuration. I may
+first rule that CLAN will contain a flat and unconnected list of kernels.
+However, a better idea may be a list of incremental Directed Assymetric
+Graph. I think I'll start with a flat list (that can be abstracted using
+scripts) and add more powerful stuff as time goes by.
+
+
+=head1 Source-Specific Configuration FILES
+
+=head2 packages_list.long.txt.gz
+
+A long list of the packages, compressed. It contains most necessary information
+including dependencies, names, license, supported architectures, source or binary. etc.
+
+=head2 category/sub-cat/sub-cat/CHECKSUMS
+
+A file including the CHECKSUMS for the modules. (MD5, a PGP signature or
+whatever - I'm not a Crypto expert).
+
+=head1 Organization of a Package
+
+The module will contain a directory name C<src> with the tree of the source
+files. It will then contain a skeleton for the makefile. Probably not a valid
+makefile itself, just something like Makefile.am with some syntactic sugar.
+
+Then it will contain a C<BuildLinuxPackage.pm> module. This module will contain
+one function that will return a Perl 5 data structure with various
+constraints, dependencies, gcc options and whatever is required to build the
+module. Its output should not be dependant on the underlying system and should
+be relatively constant (it is very possible that for security reasons it will
+run in a Safe compartment).
+
+Another thing the modules will contain is a C<MakePack.PL> script. This script
+will be a short and common bootstrap script that will call appropriate
+CLAN modules. It can be invoked in several ways to install the module
+semi-manually:
+
+    ./MakePack.PL --prepare=tar.gz
+    ./MakePack.PL --prepare=rpm
+    ./MakePack.PL --compile
+    ./MakePack.PL --install
+
+It will read an environment variable that will tell it what the right kernel
+is.
+
+=head1 Processes
+
+=head2 Building a Module
+
+The C<clan> client will take the module and after downloading and verifying it
+will build an Autoconf package out of it or something similar. The package
+will be self-contained to build the module on every system.
+
+It will contain a debian sub-tree so it can be built as a deb, and an RPM
+spec to be built as an RPM. It can alternatively be built as any other source
+package (source RPM, etc). The package will probably require only POSIX and GNU
+bootstrap and will not depend on Perl.
+
+=head2 Installing a Module
+
+If a module requires dependencies they are all gathered into one list until
+none are left and/or they are all installed. All the changes required to go
+into the mainline kernel are collected as well. If some of them are actually
+needed, the administrator is queries for permission to build a new kernel (this
+may be specified implictly in one configuration file)
+
+After that, each of the dependencies is download, packaged and compiled, and
+at the end the desired module is installed.
+
+=head2 Packaging a Bundle of Modules or an Entire Kernel
+
+CLAN can have themes (or in CPAN's terms bundles) that will specify a
+collection of modules. These bundles can later be packaged into a complete
+Autoconfisicated package that can be used to install each of the modules.
+Note that this package B<will be> configurable. It can be configured with
+using C<./configure> flags and probably will contain a GUI or console
+configuration tool.
+
+In a similar way it would be possible to package an entire kernel. The
+core kernel itself (the Virtual Memory Manager, Scheduler, Process Manager, etc)
+will be another CLAN module that can be installed and compiled separately.
+In a similar fashion the separate sub-systems - networking, the TCP/IP stack
+IP-Tables, USB, etc will be CLAN modules.
+
+This will enable creating custom distribution kernels that can be maintained
+instead of using several centrally maintained source trees.
+
+=head1 Support for Building Options
+
+=head2 Support for Architectures and Source/Binary
+
+I think a nice thing to have would be a tree of architecutres:
+
+    [Root]
+    |
+    ==> i386 ==> i486 ==> i586 ==> i686
+    |
+    ==> uml [unusable] ==> uml-i386
+    |
+    ==> sparc ==> sparc64
+    |
+    ==> PowerPC ==> G4
+    |
+    ==> Alpha
+
+etc.
+
+Every package can specify a list of nodes that it can be built with. For
+example, Syscalltrack (L<http://www.syscalltrack.org/>) is a source package,
+yet was only adapted to the i386 and subsequent architectures. There are many
+binary only kernel drivers out there. A source package may specify [ROOT]
+to show that it is universal and built anywhere.
+
+To search for a suitable package, a module system will try to reach the
+designated kernel architecture from one of the architectures using Depth-First
+Search or Breadth-First-Search on the tree. (or a better algorithm - I don't
+think it is real-time code)
+
+=head2 Support for patches
+
+CLAN will have support for applying patches to the source packages before
+compiling them. One configuration file would be able to specify mandatory
+patches or scripts to perform before the packaging or build process.
+
+This will make maintaining modules of distributors who are trying to
+fix broken ones easier.
+
+=head2 In-kernel vs. out of kernel compilation
+
+It should be possible to compile a module in the kernel or outside it after
+a kernel distribution has been prepared. This should be part of its
+configuration process.
+
+=head1 Integration with other systems
+
+=head2 Keith Owen's kbuild
+
+I don't know much about it, except that it is much faster than the current one
+and more powerful. I'm not using the 2.5.x series (but maybe I should) so
+it's hard for me to tell whether the CLAN ready-to-compile and install packages
+will use it. It is possible they'll have one gigantic makefile or an Autoconf
+process instead.
+
+=head2 LinuxKernelConf
+
+I believe eventually LinuxKernelConf should be based on CLAN or CLAN should
+bootstrap some of its packages with LKC or a similar system.
+
+=head2 LILO, GRUB and loadlin
+
+I believe CLAN should be made aware of them, and not mess them up. If the
+user instructs a kernel to be installed, the previous one should be kept
+as backup. And there may be other issues as well.
+
+=head1 Thanks
+
+Thanks should go to Tzafrir Choen who gave some useful input regarding CLAN so
+far. Also Rene Rask gave some inpur on irc.kernelnewbies.org.
+
+I would also like to thank Muli Ben-Yehuda for his standard: "I'll look into
+it when it's codeware and not just ideaware" pragma. Muli, without people
+like you, people would have been pure theoreticans and you would not see
+anything practical going on. But luckily there are some people like me who
+like to plan ahead and thoroughly think something before they start hacking.
+(unless of course it's a throw-away command-line bash script). I'd also like to
+thank him for changing his signature twice in a few hours, and mentioning
+Freecell Solver (my most successful and usable project so far) in each one.
+
+
+
+
+
+

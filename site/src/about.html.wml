@@ -1,0 +1,130 @@
+#include '../template.wml'
+
+<subject "CLAN - About" />
+
+<h2>What is CLAN?</h2>
+
+<p>
+What is CLAN? In one sentence it is a framework for automatically downloading,
+packaging, compiling, and installing Linux kernel modules (the so-called "core"
+modules as well as third-party modules) and even entire kernels.
+</p>
+
+<p>
+Imagine the following scenarios:
+</p>
+
+<ol>
+<li>
+You've just installed an obscure hardware. It isn't in your distribution kernel
+and you're not brave enough to compile a newer one. With one CLAN command
+you can download the driver from a remote source and have it installed on
+your system. It will even work for modules that are not compatible with the GPL.
+</li>
+<li>
+You compiled a kernel without USB support and suddenly got a cool USB scanner
+that is supported by UNIX. By issuing one clan-client command and giving
+your permission, CLAN will not just install the kernel module for you, but
+recomile the kernel to add USB support, and even install the new kernel side
+by side with the old one in your LILO/GRUB/loadlin configuration.
+</li>
+<li>
+Let's say you are a distributor that has a "Foo Linux" distribution (in case
+your initials are RMS that's "Foo GNU/Linux"), but you are tired of maintaining
+your own tree that is similar to Alan Cox's or Linus' but with quite a few patches. Just register a bundle in CLAN, and you can have the kernel prepared for
+you in one command.
+</li>
+<li>
+You don't have Perl installed on your system. That's not a problem, ask a
+friend to package the relevant CLAN configuration for you and you have a kernel
+that you can compile, configure and install with GNU tools alone. Without Perl
+or Python or anything.
+</li>
+</ol>
+
+<h2>How to prounounce it?</h2>
+
+<p>
+I pronounce CLAN as "See-Lan", similar to CPAN (See-Pan) or CTAN (See-tan).
+Pronouncing it as "klan" is acceptable as well. But I think "See-lan" can
+distinguish it from the Scottish clans, D&amp;D demi-humans clans, and other
+clans.
+</p>
+
+<h2>The CLAN Architecture</h2>
+
+<p>
+CLAN packages contain the bare essentials to create a kernel module package
+that can be bootstraped on any system. They are similar in essence to CPAN
+packages, but were adapted to fit the needs of the Linux kernel. With a CLAN
+package you can perform several steps:
+</p>
+
+<ol>
+<li>
+prepare a package that can be configured compiled and installed on any GNU
+system. (including GNU/Linux, cygwin, a GNUized BSD or Solaris etc.) No
+Perl or Python are required for using it, but gcc, GNU make, GNU awk, glibc,
+etc. are. This is still the case with any Linux kernel tree as it is now.
+</li>
+<li>
+That self-sustaining package can be compiled, configured and installed.
+</li>
+<li>
+clan-client can also install a package and all of its depenedencies
+automatically.
+</li>
+<li>
+clan client can be used to re-configure a living kernel and prepare a new
+kernel will be rebooted.
+</li>
+<li>
+CLAN can handle several sources and more can be configured by distributors,
+by users and by other people. It can thus be enabled for installing third-party
+modules that aren't part of the core kernel (at least not yet), or even
+proprietary binary or source modules that will never make it there.
+</li>
+</ol>
+
+<p>
+CPAN and the Debian Pool and its apt-tool supplied the main inspirations, but
+CLAN will have some deviations from them to adapt it to the Linux kernel needs.
+</p>
+
+<h2>Current Problems with the Linux Kernel Maintainance</h2>
+
+<ol>
+<li>
+The Linux Kernel is maintained by one or few several maintainers, which have
+to apply patches to every one of its many independant components.
+</li>
+<li>
+A user typically uses only a small part of the functionality given to it
+in the large archive that contains a lot of drivers (sound, networking,
+graphics, etc.) for various vendors, and many optional kernels most of which
+are not individually used by the users.
+</li>
+<li>
+Distribution kernels contain many patches that were not accepted and are
+hard to maintain.
+</li>
+<li>
+There are several kernel trees, which are merged or being forked, and large
+parts of them are the same.
+</li>
+<li>
+External modules: proprietary modules, or those that were not accepted into
+the kernel (based on Linus' discretion) have to be downloaded separately and
+installed.
+</li>
+</ol>
+
+<p>
+In the future, CLAN aims to provide answer for all of these issues, and provide
+a scalable way to maintain the Linux kernel and for third-party module writers
+to make their modules easily installable. At the moment, there is not enough
+working code to perform it, but hopefully this dream will materialize soon as
+more and more code is written (perhaps by you ?).
+</p>
+
+
